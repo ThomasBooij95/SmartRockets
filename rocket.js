@@ -4,6 +4,8 @@ function Rocket(dna) {
 	this.acc = createVector();
 	this.finishtime;
 	this.finish = false;
+	this.bestRocket = false;
+	this.coloured = false;
 	
 	this.completed = false;
 	if (dna){
@@ -51,11 +53,25 @@ function Rocket(dna) {
 		push();
 		noStroke();
 		fill(255,150);
+		if(this.coloured){
+			console.log("Kleurcode wordt gerund");
+			fill(456,100,55);
+		}
 		translate(this.pos.x , this.pos.y);
 		rotate(this.vel.heading());
 		rectMode(CENTER);
 		rect(0,0, 25,5);
 		pop();
 	}
+
+	this.reset = function() {
+		console.log("reset is gerund")
+		this.pos = createVector(width/2,height);
+		this.vel = createVector();
+		this.acc = createVector();
+		this.finishtime = 0;
+		this.finish = false;
+		this.completed = false;
+		}
 }
 

@@ -10,31 +10,44 @@ function Population() {
  this.evaluate = function(){
  	
  	var maxfit = 0;
+ 	var bestRocket;
  	for (var i = 0; i< this.popsize ;i++){
  		this.rockets[i].calcFitness();
  		if (this.rockets[i].fitness >maxfit){
  			maxfit = this.rockets[i].fitness;
+ 			bestRocket = this.rockets[i];
+ 			
  		}
  	}
+ 	bestRocket.bestRocket = true;
+ 	bestRocket.reset();
 
  	for (var i = 0; i< this.popsize ;i++){
  		this.rockets[i].fitness /= maxfit;
  	}
 
+
   this.matingpool = [];
-  
-  for (var i = 0; i< this.popsize ;i++){
+    for (var i = 0; i< this.popsize ;i++){
  		var n = this.rockets[i].fitness * 100 ;
- 		for (var j = 0;j<n; j++){
+ 		
+ 		for (var j = 0;j<n-1; j++){
  			this.matingpool.push(this.rockets[i]);
 			}
  		}
- 		console.log(maxfit);
+
+ 		return(bestRocket);
+ 		
+
+
 }
 
-this.selection = function(){
+this.selection = function(bestRocket){
+	console.log(bestRocket);
+
+	var newRockets = [];
 	
-	var newRockets =  [];
+
 	for (var i = 0; i < this.rockets.length; i++) {
 	var parentA = random(this.matingpool).dna;
 	var parentB = random(this.matingpool).dna;
@@ -42,8 +55,12 @@ this.selection = function(){
 	child.mutation();
  	newRockets[i] = new Rocket(child);
  	}
-
+ 	newRockets[24] = bestRocket;
+ 	newRockets[24].bestRocket = false;
+ 	newRockets[24].coloured = true;
+ 	console.log(newRockets);
  	this.rockets = newRockets;
+
 
 }
 
