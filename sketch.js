@@ -1,6 +1,6 @@
 var rocket;
 var population;
-var lifespan = 350;
+var lifespan = 500;
 var lifeP;
 var count = 0;
 var target;
@@ -10,7 +10,7 @@ var distanceFactor=1;
 var completeFactor = 10;
 var bestRocketglobal;
 function setup() {
-	createCanvas(300,300);
+	createCanvas(1000,1000);
 	rocket = new Rocket();
 	population = new Population();
 	lifeP = createP();

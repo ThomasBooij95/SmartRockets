@@ -1,6 +1,6 @@
 function Population() {
 	this.rockets = [];
-	this.popsize = 25;
+	this.popsize = 50;
 	this.matingpool = [];
 
 	for (var i = 0; i < this.popsize; i++) {
@@ -27,20 +27,16 @@ function Population() {
  	}
 
 
-  this.matingpool = [];
-    for (var i = 0; i< this.popsize ;i++){
+ 	this.matingpool = [];
+ 	for (var i = 0; i< this.popsize ;i++){
  		var n = this.rockets[i].fitness * 100 ;
- 		
  		for (var j = 0;j<n-1; j++){
  			this.matingpool.push(this.rockets[i]);
-			}
  		}
+ 	}
 
- 		return(bestRocket);
- 		
-
-
-}
+ 	return(bestRocket);
+ }
 
 this.selection = function(bestRocket){
 	console.log(bestRocket);
@@ -55,9 +51,9 @@ this.selection = function(bestRocket){
 	child.mutation();
  	newRockets[i] = new Rocket(child);
  	}
- 	newRockets[24] = bestRocket;
- 	newRockets[24].bestRocket = false;
- 	newRockets[24].coloured = true;
+ 	newRockets[this.popsize-1] = bestRocket;
+ 	newRockets[this.popsize-1].bestRocket = false;
+ 	newRockets[this.popsize-1].coloured = true;
  	console.log(newRockets);
  	this.rockets = newRockets;
 
